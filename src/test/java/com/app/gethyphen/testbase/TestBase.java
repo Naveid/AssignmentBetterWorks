@@ -21,7 +21,7 @@ import com.app.gethyphen.config.Config;
 
 public class TestBase {
 
-	protected WebDriver driver;
+	public static WebDriver driver;
 
 	public WebDriver getDriver()
 	{
@@ -31,6 +31,11 @@ public class TestBase {
 	{
 		this.driver= driver;
 	}
+
+	public TestBase(WebDriver driver) {
+		this.driver = driver;
+	}
+	public TestBase(){}
 
 	@BeforeSuite
 	public void beforeSuite() throws Exception{
@@ -53,7 +58,7 @@ public class TestBase {
 		}
 		else if (browser.equalsIgnoreCase("CHROME") && mode.equals("nogrid"))
 		{ 
-			String path = System.getProperty("user.dir") + "/driver/chromedriver.exe";
+			String path = "D:\\\\chromedriver.exe";
 			System.setProperty("webdriver.chrome.driver", path);
 			setDriver(new ChromeDriver());
 			getDriver().manage().window().maximize();
@@ -94,9 +99,9 @@ public class TestBase {
 	}
 	
 
-	/*
-	 * @AfterSuite public void closeBrowser() { getDriver().quit(); }
-	 */
+
+	  @AfterSuite public void closeBrowser() { getDriver().quit(); }
+
 
 	public String screenShot(ITestResult result) throws Exception {
 		String folder =  System.getProperty("user.dir")

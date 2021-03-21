@@ -1,5 +1,6 @@
 package com.app.gethyphen.tests;
 
+import org.openqa.selenium.interactions.SourceType;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterGroups;
@@ -21,6 +22,7 @@ public class CreatePollTest extends TestBase{
 		CreatePollPage poll = PageFactory.initElements(driver, CreatePollPage.class);
 		
 		try {
+			System.out.println(driver);
 			poll.createPoll();
 			poll.selectPollTypeUser(userType);
 			poll.createPollType(pollType);
@@ -28,7 +30,6 @@ public class CreatePollTest extends TestBase{
 			poll.clickSelect();
 			poll.enterText(pollText);
 			poll.publishPost();
-			driver.wait(4000);
 			poll.logout();
 			
 		}catch (Exception e) {
